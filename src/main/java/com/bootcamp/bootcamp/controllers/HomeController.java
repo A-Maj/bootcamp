@@ -26,9 +26,5 @@ public class HomeController {
         model.addAttribute("lastName", lastName);
         return "home";
     }
-    //@RequestMapping(value = "/o-nas", method = RequestMethod.GET)
-    @GetMapping("/o-nas")
-    public String getAbout() {
-        return "about";
-    }
+
 }

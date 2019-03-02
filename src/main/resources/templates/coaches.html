@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="pl" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Trenerzy</title>
+</head>
+<body>
+<header th:replace="fragments/header ::menu"></header>
+<h1>Trenerzy</h1>
+</body>
+    <h2>
+        <ul>
+            <th:block th:each="coach : ${coachesList}">
+                <li th:text="${coach.name} + ' ' + ${coach.surname}">
+
+                </li>
+            </th:block>
+            <!--<li th:each="coach: ${coachesList}" th:text="${coach.name}"></li>-->
+        </ul>
+    </h2>
+</html>
