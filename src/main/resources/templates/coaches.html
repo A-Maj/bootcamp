@@ -7,15 +7,20 @@
 <body>
 <header th:replace="fragments/header ::menu"></header>
 <h1>Trenerzy</h1>
-</body>
-    <h2>
-        <ul>
-            <th:block th:each="coach : ${coachesList}">
-                <li th:text="${coach.name} + ' ' + ${coach.surname}">
+<h2>
+    <ul>
+        <!--<th:block th:each="coach : ${coachesList}">-->
+        <!--<li th:text="${coach.name} + ' ' + ${coach.surname}">-->
 
-                </li>
-            </th:block>
-            <!--<li th:each="coach: ${coachesList}" th:text="${coach.name}"></li>-->
-        </ul>
-    </h2>
+        <!--</li>-->
+        <!--</th:block>-->
+        <li th:each="coach : ${coachesList}">
+            <a th:href="'/trenerzy/' +${coach.id}" th:text="${coach.name} + ' ' + ${coach.surname}"></a>
+        </li>
+        <!--<li th:each="coach: ${coachesList}" th:text="${coach.name}"></li>-->
+    </ul>
+</h2>
+<footer th:replace="fragments/footer ::footer">
+</footer>
+</body>
 </html>
