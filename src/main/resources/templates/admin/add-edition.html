@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="pl" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Bootcamp</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+<header th:replace="fragments/header :: menu"></header>
+
+<h1>Panel Administratora</h1>
+<h2>Dodawanie Trenera</h2>
+
+
+
+<form th:action="@{/admin/zapisz-edycje}" th:object="${courseEdition}" method="post">
+
+    <p th:errors="*" class="error"></p>
+
+    <!--<p th:errors="*{course.name}" class="error"></p>-->
+    <!--<p th:errors="*{lastName}" class="error"></p>-->
+    <!--<p th:errors="*{salary}" class="error"></p>-->
+    <!--<p th:errors="*{description}" class="error"></p>-->
+
+
+    <label for="name">Nazwa</label>
+
+    <select th:field="*{course}" id="name">
+        <option th:each="kurs : ${allCourses}" th:value="${kurs.id}" th:text="${kurs.name}"></option><br>
+    </select>
+
+    <!--<p th:errors="*{startDate}" class="error"></p>-->
+    <label for="startDate">Data startu</label> <input id="startDate" type="date" th:field="*{startDate}" th:class="${#fields.hasErrors('startDate')} ? error"/><br>
+
+    <!--<p th:errors="*{endDate}" class="error"></p>-->
+    <label for="endDate">Data zakończenia</label> <input id="endDate" type="date" th:field="*{endDate}" th:class="${#fields.hasErrors('endDate')} ? error"/><br>
+
+    <!--<p th:errors="*{price}" class="error"></p>-->
+    <label for="price">Cena</label> <input id="price" type="number" step="1" th:field="*{price}" th:class="${#fields.hasErrors('price')} ? error"/><br>
+
+    <!--<p th:errors="*{membersList}" class="error"></p>-->
+    <label for="membersLimit">Maksymalna ilośc miejsc</label> <input id="membersLimit" type="number" step="1" th:field="*{membersLimit}" th:class="${#fields.hasErrors('membersLimit')} ? error"/><br>
+
+    <label for="mode">Tryb</label>
+    <select th:field="*{mode}" id="mode">
+        <option th:each="typ : ${modeList}" th:value="${typ.id}" th:text="${typ.name}"></option><br>
+    </select>
+
+    <label for="trainer">Trener</label>
+    <select th:field="*{trainer}" id="trainer">
+        <option th:each="trainer : ${trainerList}" th:value="${trainer.id}" th:text="${trainer.firstName} + ' ' + ${trainer.lastName}"></option><br>
+    </select>
+    <br>
+
+    <input type="hidden" th:field="*{id}">
+    <input type="submit" value="zapisz"/>
+</form>
+<footer th:replace="fragments/footer :: footer">
+</footer>
+</body>
+</html>

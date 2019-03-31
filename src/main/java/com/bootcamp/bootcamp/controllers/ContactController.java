@@ -5,10 +5,14 @@ import com.bootcamp.bootcamp.service.ContactService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+
+import javax.validation.Valid;
+import java.util.List;
 
 @Controller
 public class ContactController {
@@ -17,18 +21,22 @@ public class ContactController {
     private ContactService contactService;
 
     @GetMapping("/kontakt")
-    public String getContact(Model model) {
-
+    public String contact(Model model) {
         model.addAttribute("contact", new Contact());
         return "contact";
     }
 
-    //@ModelAttribute odnosi się do całego modelu.
     @PostMapping("/wyslij")
-    public String sent(@ModelAttribute Contact contact, Model model) {
-        model.addAttribute("isSent", true);
-        model.addAttribute("contact", new Contact());
-        contactService.saveContact(contact);
+    public String sendMessage(@Valid @ModelAttribute Contact contact, BindingResult result, Model model) {
+        if (result.hasErrors()) {
+            List<ObjectError> errors = result.getAllErrors();
+            errors.forEach(err -> System.out.println(err.getDefaultMessage()));
+        } else {
+            model.addAttribute("isSent", true);
+            contactService.save(contact);
+        }
+
+//        model.addAttribute("contact", new Contact());
         return "contact";
     }
 }

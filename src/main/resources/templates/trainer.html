@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="pl" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Bootcamp</title>
+</head>
+<body>
+<header th:replace="fragments/header :: menu"></header>
+
+<ul>
+    <li th:each="trainer : ${trainerList}">
+        <a sec:authorize="!isAuthenticated() || hasAuthority('user')" th:href="'/trenerzy/'+${trainer.id}" th:text="${trainer.firstName} + ' ' + ${trainer.lastName}"></a>
+        <a sec:authorize="hasAuthority('admin')" th:href="'admin/edytuj-trenera/'+${trainer.id}" th:text="${trainer.firstName} + ' ' + ${trainer.lastName}"></a>
+    </li>
+</ul>
+
+<footer th:replace="fragments/footer :: footer">
+</footer>
+</body>
+</html>

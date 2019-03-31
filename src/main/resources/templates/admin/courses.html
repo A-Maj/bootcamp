@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="pl" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Bootcamp</title>
+</head>
+<body>
+<header th:replace="fragments/header :: menu"></header>
+
+<h1>Panel Administratora</h1>
+
+<span th:if="${trainerIsAdded}"> Dodano Trenera </span><br>
+<!--<span th:if="${trainerIsChanged}"> Zmieniono Trenera </span><br>-->
+<span th:if="${trainerIsDeleted}"> Usunieto Trenera </span><br>
+<a href="/admin/dodaj-kurs">Dodaj kurs</a>
+
+<table border="1" style="width:300px">
+    <tr>
+        <td>Nazwa</td>
+        <td>Opis</td>
+        <td>Technologia</td>
+    </tr>
+    <tr th:each="course : ${allCourses}">
+        <td>
+            <span th:text="${course.name}"></span>
+        </td>
+        <td>
+            <span th:text="${course.description}"></span>
+        </td>
+        <td>
+            <span th:text="${course.technology}"></span>
+        </td>
+        <td>
+            <a th:href="@{'/admin/edytuj-kurs/' + ${course.id}}" method="get">edytuj</a>
+        </td>
+    </tr>
+</table>
+
+<footer th:replace="fragments/footer :: footer">
+</footer>
+</body>
+</html>

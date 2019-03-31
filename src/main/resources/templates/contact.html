@@ -2,33 +2,43 @@
 <html lang="pl" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Kontakt</title>
+    <title>Bootcamp</title>
+    <link rel="stylesheet" th:href="@{css/style.css}">
 </head>
 <body>
-<header th:replace="fragments/header ::menu"></header>
-<h1>Kontakt</h1>
-<span th:if="${isSent}">Wiadomość została wysłana dziękujemy!</span>
+<header th:replace="fragments/header :: menu"></header>
+
+<h1>Formularz kontaktowy</h1>
+
+<span th:if="${isSent}">Wiadomość została wysłana, dziękujemy!</span>
+
 <form th:action="@{/wyslij}" method="post" th:object="${contact}">
-    <label for="name">Imie:</label>
-    <br>
-    <input id="name" type="text" th:field="*{name}"/>
-    <br>
-    <label for="surname">Nazwisko:</label>
-    <br>
-    <input id="surname" type="text" th:field="*{surname}">
-    <br>
-    <label for="email">E-mail:</label>
-    <br>
-    <input id="email" type="text" th:field="*{email}">
-    <br>
+    <p th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}" class="error"></p>
+
+    <p th:if="${#fields.hasErrors('firstName')}" class="error">First name errors</p>
+
+    <p th:errors="*{firstName}" class="error"></p>
+
+    <label for="firstName">Imię</label>
+    <input id="firstName" type="text" th:field="*{firstName}" /><br><br>
+
+    <p th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}">Last name errors</p>
+    <label for="lastName">Nazwisko</label>
+    <input id="lastName" type="text" th:field="*{lastName}" /><br><br>
+
+    <p th:if="${#fields.hasErrors('email')}" th:errors="*{email}">First name errors</p>
+    <label for="email">E-mail</label>
+    <input id="email" type="email" th:field="*{email}" /><br><br>
+
     <label for="message">Wiadomość</label>
-    <br>
-    <textarea id="message" cols="30" rows="10" th:field="*{message}"></textarea>
-    <br>
-    <input type="submit" value="Wyślij">
+    <textarea id="message" cols="30" rows="10" th:field="*{message}"></textarea><br><br>
+
+    <input type="submit" value="Wyślij" />
     <input type="reset" value="Wyczyść">
 </form>
-<footer th:replace="fragments/footer ::footer">
+
+<footer th:replace="fragments/footer :: footer">
 </footer>
+
 </body>
 </html>

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="pl" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Bootcamp</title>
+</head>
+<body>
+<header th:replace="fragments/header :: menu"></header>
+
+<h1>Panel Administratora</h1>
+
+<span th:if="${trainerIsAdded}"> Dodano Trenera </span><br>
+<!--<span th:if="${trainerIsChanged}"> Zmieniono Trenera </span><br>-->
+<span th:if="${trainerIsDeleted}"> Usunieto Trenera </span><br>
+<a href="/admin/dodaj-edycje">Dodaj edycję</a>
+
+<table border="1" style="width:300px">
+    <tr>
+        <td>Kurs</td>
+        <td>Data Od</td>
+        <td>Data Do</td>
+        <td>Cena</td>
+        <td>Ilość Miejsc</td>
+        <td>Tryb</td>
+        <td>Trener</td>
+    </tr>
+    <tr th:each="edition : ${allEditions}">
+        <td>
+            <span th:text="${edition.course.name}"></span>
+        </td>
+        <td>
+            <span th:text="${edition.startDate}"></span>
+        </td>
+        <td>
+            <span th:text="${edition.endDate}"></span>
+        </td>
+        <td>
+            <span th:text="${edition.price}"></span>
+        </td>
+        <td>
+            <span th:text="${edition.membersLimit}"></span>
+        </td>
+        <td>
+            <span th:text="${edition.mode.name}"></span>
+        </td>
+        <td>
+            <span th:text="${edition.trainer.firstName} + ' ' + ${edition.trainer.lastName}"></span>
+        </td>
+        <td>
+            <a th:href="@{'/admin/edytuj-edycje/' + ${edition.id}}" method="get">edytuj</a>
+        </td>
+    </tr>
+</table>
+
+<footer th:replace="fragments/footer :: footer">
+</footer>
+</body>
+</html>

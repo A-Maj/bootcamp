@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
-import java.util.List;
 
 @Service
 public class ContactService {
@@ -14,8 +13,8 @@ public class ContactService {
     @Autowired
     private ContactRepository contactRepository;
 
-    public void saveContact(Contact contact) {
-        contact.setData(LocalDateTime.now().plusHours(1));
+    public void save(Contact contact) {
+        contact.setDate(LocalDateTime.now());
         contactRepository.save(contact);
     }
 }

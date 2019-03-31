@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="pl" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Bootcamp</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+<header th:replace="fragments/header :: menu"></header>
+
+<h1>Panel Administratora</h1>
+<h2>Dodawanie Trenera</h2>
+
+
+
+<form th:action="@{/admin/zapisz-kurs}" th:object="${course}" method="post">
+
+    <p th:errors="*" class="error"></p>
+
+    <!--<p th:errors="*{firstName}" class="error"></p>-->
+    <!--<p th:errors="*{lastName}" class="error"></p>-->
+    <!--<p th:errors="*{salary}" class="error"></p>-->
+    <!--<p th:errors="*{description}" class="error"></p>-->
+
+    <p th:errors="*{name}" class="error"></p>
+    <label for="name">Nazwa</label> <input id="name" type="text" th:field="*{name}" th:class="${#fields.hasErrors('name')} ? error"/><br>
+
+    <p th:errors="*{technology}" class="error"></p>
+    <label for="technology">Technologie</label> <input id="technology" type="text" th:field="*{technology}" th:class="${#fields.hasErrors('technology')} ? error"/><br>
+
+    <p th:errors="*{description}" class="error"></p>
+    <label for="description">opis</label> <textarea th:field="*{description}" id="description" cols="30" rows="10" th:class="${#fields.hasErrors('description')} ? error"></textarea><br>
+
+    <input type="hidden" th:field="*{id}">
+    <input type="submit" value="zapisz"/>
+</form>
+<footer th:replace="fragments/footer :: footer">
+</footer>
+</body>
+</html>

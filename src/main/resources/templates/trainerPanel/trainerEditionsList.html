@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="pl" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Bootcamp</title>
+</head>
+<body>
+<header th:replace="fragments/header :: menu"></header>
+
+<h1>Lista Kursów</h1>
+
+
+<table border="1" style="width:300px">
+    <tr>
+        <td>Kurs</td>
+        <td>Opis</td>
+        <td>Data Rozpoczęcia</td>
+        <td>Data Zakończona</td>
+        <td>Cena</td>
+        <td>Tryb</td>
+        <td>Status</td>
+    </tr>
+    <tr th:each="edition : ${allEditions}">
+        <td>
+            <span th:text="${edition.course.name}"></span>
+        </td>
+        <td>
+            <span th:text="${edition.course.description}"></span>
+        </td>
+        <td>
+            <span th:text="${edition.startDate}"></span>
+        </td>
+        <td>
+            <span th:text="${edition.endDate}"></span>
+        </td>
+        <td>
+            <span th:text="${edition.price}"></span>
+        </td>
+        <td>
+            <span th:text="${edition.mode.name}"></span>
+        </td>
+        <td>
+            <span th:text="${edition.active} ? 'Rekrutacja trwa' : 'rekrutacja zakończona'"></span>
+        </td>
+
+
+        <!--<td>-->
+        <!--<a th:href="@{'/admin/edytuj-edycje/' + ${edition.id}}" method="get">edytuj</a>-->
+        <!--</td>  -->
+    </tr>
+</table>
+
+
+<footer th:replace="fragments/footer :: footer">
+</footer>
+</body>
+</html>

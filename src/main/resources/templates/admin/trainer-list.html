@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="pl" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Bootcamp</title>
+</head>
+<body>
+<header th:replace="fragments/header :: menu"></header>
+
+<h1>Panel Administratora</h1>
+
+<span th:if="${trainerIsAdded}"> Dodano Trenera </span><br>
+<!--<span th:if="${trainerIsChanged}"> Zmieniono Trenera </span><br>-->
+<span th:if="${trainerIsDeleted}"> Usunieto Trenera </span><br>
+<a href="/admin/dodaj-trenera">Dodaj trenera</a>
+
+<table border="1" style="width:300px">
+    <tr>
+        <td>Imie</td>
+        <td>Nazwisko</td>
+        <td>Stawka</td>
+        <td></td>
+    </tr>
+    <tr th:each="trainer : ${trainersListSortedByLastName}">
+        <td>
+            <span th:text="${trainer.firstName}"></span>
+        </td>
+        <td>
+            <span th:text="${trainer.lastName}"></span>
+        </td>
+        <td>
+            <span th:text="${trainer.salary}"></span>
+        </td>
+        <td>
+            <a th:href="@{'/admin/edytuj-trenera/' + ${trainer.id}}" method="get">edytuj</a>
+            <a th:href="@{'/admin/usun-trenera/' + ${trainer.id}}" method="get">usuń</a>
+        </td>
+    </tr>
+</table>
+
+<footer th:replace="fragments/footer :: footer">
+</footer>
+</body>
+</html>

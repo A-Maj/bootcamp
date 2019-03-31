@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="pl" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Bootcamp</title>
+    <link rel="stylesheet" th:href="@{css/style.css}">
+</head>
+<body>
+<header th:replace="fragments/header :: menu"></header>
+
+<h1>Zapis na kurs</h1>
+
+
+<form th:action="@{dodaj-konto/zapisz}" method="post" th:object="${user}">
+    <!--<p th:if="${#fields.hasErrors('name')}" th:errors="*{name}" class="error"></p>-->
+
+    <!--<p th:if="${#fields.hasErrors('firstName')}" class="error">First name errors</p>-->
+
+    <!--<p th:errors="*{firstName}" class="error"></p>-->
+    <p th:errors="*" class="error"></p>
+
+    <input type="hidden" th:field="*{id}">
+
+    <label for="name">Imię</label>
+    <input id="name" type="text" th:field="*{name}" /><br><br>
+
+    <!--<p th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}">Last name errors</p>-->
+    <label for="lastName">Nazwisko</label>
+    <input id="lastName" type="text" th:field="*{surname}" /><br><br>
+
+    <!--<p th:if="${#fields.hasErrors('email')}" th:errors="*{mail}">First name errors</p>-->
+    <label for="mail">E-mail</label>
+    <input id="mail" type="email" th:field="*{mail}" /><br><br>
+
+    <label for="password">Hasło:</label>
+    <input id="password" type="text" th:field="*{password}" /><br><br>
+
+    <label for="phone">Telefon</label>
+    <input id="phone" type="text" th:field="*{phone}" /><br><br>
+
+    <label for="role">Rola</label>
+    <select th:field="*{role}" id="role">
+        <option th:each="role : ${allRoles}" th:value="${role.id}" th:text="${role.role}"></option><br>
+    </select>
+
+    <input type="submit" value="Wyślij" onclick="return confirm('Czy na pewno chcesz stowrzyć nowego użytkownika?')"/>
+    <input type="reset" value="Wyczyść">
+</form>
+
+<footer th:replace="fragments/footer :: footer">
+</footer>
+
+</body>
+</html>
