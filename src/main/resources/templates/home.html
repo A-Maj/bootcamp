@@ -3,11 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <title>Bootcamp</title>
+    <link rel="stylesheet" th:href="@{css/style.css}">
 </head>
 <body>
 <header th:replace="fragments/header ::menu"></header>
 <h1><th:block th:text="${lastName}"></th:block></h1>
-<h1><span th:text="${nazwaZmiennejWwidoku}"></span> Witaj na bootcampie.</h1>
+<h1 class="home"><!--<span th:text="${nazwaZmiennejWwidoku}"></span> --> Chcesz zostać programistą? Trafiłeś w dobre miejsce! Zapisz się na jeden z naszych kursów aby rozpocząć własną karierę w IT!.</h1>
 <footer th:replace="fragments/footer ::footer">
 </footer>
 </body>

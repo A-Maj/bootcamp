@@ -9,6 +9,20 @@ input.error {
  border-radius: 4px;
  }
 
- table
+h1.home {
+text-align: center;
+color: red;
+}
+
+footer {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  opacity: 0.5;
+  width: 100%;
+  background-color: grey;
+  color: white;
+  text-align: center;
+}
 
 

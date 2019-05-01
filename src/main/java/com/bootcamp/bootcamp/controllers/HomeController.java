@@ -12,18 +12,22 @@ import org.springframework.web.bind.annotation.RequestParam;
 public class HomeController {
 
     //@RequestMapping(value = "/", method = RequestMethod.GET)
+
+//    @GetMapping("/")
+//    public String getHome(@RequestParam(name = "imie", defaultValue = "Jan") String firstName,
+//                          @RequestParam(name = "nazwisko", defaultValue = "Ktoś") String lastName,
+//                          @RequestParam(defaultValue = "25") int wiek,
+//                          Model model) { return "..." }
+
     @GetMapping("/")
-    public String getHome(@RequestParam(name = "imie", defaultValue = "Jan") String firstName,
-                          @RequestParam(name = "nazwisko", defaultValue = "Ktoś") String lastName,
-                          @RequestParam(defaultValue = "25") int wiek,
-                          Model model) {
+    public String getHome() {
 //        System.out.println("Witaj " + firstName + " " + lastName + " " + wiek,);
 //        if (wiek > 20) {
 //            return "redirect:o-nas";
 //            return "forward:o-nas"; nie aktualizuje adresu do ktorego uzytkownik jest przekierowywany. Wyswietla "home"
 //        }
-        model.addAttribute("nazwaZmiennejWwidoku", firstName);
-        model.addAttribute("lastName", lastName);
+//        model.addAttribute("nazwaZmiennejWwidoku", firstName);
+//        model.addAttribute("lastName", lastName);
         return "home";
     }
 
