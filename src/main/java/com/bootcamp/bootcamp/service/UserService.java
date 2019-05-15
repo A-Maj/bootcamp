@@ -30,7 +30,7 @@ public class UserService {
 
     public void saveUser(User user) {
 
-        user.setCourseEdition(null);
+        user.setEditions(null);
 
         PasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
         user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));

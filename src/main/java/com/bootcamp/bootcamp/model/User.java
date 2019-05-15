@@ -9,6 +9,7 @@ import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
+import java.util.List;
 
 @Entity
 @Data
@@ -42,7 +43,7 @@ public class User {
     @NotBlank
     private String password;
 
-    @ManyToOne
-    @JoinColumn(name = "courseEdition_id")
-    private CourseEdition courseEdition;
+    @ManyToMany
+    @JoinColumn(name = "courseEditions")
+    private List<CourseEdition> editions;
 }

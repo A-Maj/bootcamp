@@ -2,27 +2,34 @@
 <html lang="en"
       xmlns:th="http://www.thymeleaf.org"
       xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
-
-<body>
-<nav th:fragment="menu">
-    <ul>
-        <li><a href="/">Strona główna</a></li>
-        <li><a href="/o-nas">O Nas</a></li>
-        <li><a href="/kursy">Kursy</a></li>
-        <li><a href="/trenerzy">Trenerzy</a></li>
-        <li><a href="/kontakt">Kontakt</a></li>
-        <li sec:authorize="!isAuthenticated() || hasAuthority('user')"><a href="/user">Panel kursanta</a> </li>
-        <li sec:authorize="isAuthenticated()" >
-            <a href="/logout">Wyloguj</a>
-            <!--<li sec:authentication="name"><a href="/">Wyloguj</a></li>-->
-            <!--<li th:block="${#authentication.name}">-->
-            <!--<a href="/">Wyloguj</a>-->
-            <!--</li>-->
-        </li>
-
+    <body>
+        <nav class="menu" th:fragment="menu">
+            <!--<ul>-->
+                <!--<li><a href="/">Strona główna</a></li>-->
+                <!--<li><a href="/o-nas">O Nas</a></li>-->
+                <!--<li><a href="/kursy">Kursy</a></li>-->
+                <!--<li><a href="/trenerzy">Trenerzy</a></li>-->
+                <!--<li><a href="/kontakt">Kontakt</a></li>-->
+                <!--<li sec:authorize="!isAuthenticated() || hasAuthority('user')"><a href="/user">Panel kursanta</a> </li>-->
+                <!--<li sec:authorize="isAuthenticated()" >-->
+                    <!--<a href="/logout">Wyloguj</a>-->
+                    <!--<li sec:authentication="name"><a href="/">Wyloguj</a></li>-->
+                    <!--<li th:block="${#authentication.name}">-->
+                    <!--<a href="/">Wyloguj</a>-->
+                    <!--</li>-->
+                    <!--</li>-->
+                <div id="topnav">
+                    <a th:classappend="${#httpServletRequest.getRequestURI() == '/' ? 'active':''}" class="btn" href="/">Strona główna</a>
+                    <a th:classappend="${#httpServletRequest.getRequestURI() == '/o-nas' ? 'active':''}" class="btn" href="/o-nas">O Nas</a>
+                    <a th:classappend="${#httpServletRequest.getRequestURI() == '/kursy' ? 'active':''}" class="btn" href="/kursy">Kursy</a>
+                    <a th:classappend="${#httpServletRequest.getRequestURI() == '/trenerzy' ? 'active':''}" class="btn" href="/trenerzy">Trenerzy</a>
+                    <a th:classappend="${#httpServletRequest.getRequestURI() == '/kontakt' ? 'active':''}" class="btn" href="/kontakt">Kontakt</a>
+                    <span  sec:authorize="!isAuthenticated() || hasAuthority('user')"><a th:classappend="${#httpServletRequest.getRequestURI() == '/logowanie' ? 'active':''}" class="btn" href="/user">Logowanie</a></span>
+                    <span></span>
+                </div>
     </ul>
     <ul sec:authorize="hasAuthority('admin')">
-        <li>
+        <li >
             <a href="/admin">Panel Trenerów</a>
         </li>
         <li>
@@ -40,6 +47,6 @@
         </li>
 
     </ul>
-</nav>
-</body>
+        </nav>
+    </body>
 </html>
